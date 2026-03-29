@@ -1000,6 +1000,8 @@ else if(state.page === "profile")
   window.fromHistory = false;
 };
 
+});
+
 /* ===============================
    UI INITIALIZATION
 ================================ */
