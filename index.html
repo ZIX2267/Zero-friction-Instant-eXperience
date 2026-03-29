@@ -156,12 +156,6 @@ chatBtn.addEventListener('click',()=>chatModal.classList.add('show'));
 chatClose.addEventListener('click',()=>chatModal.classList.remove('show'));
 chatModal.addEventListener('click',(e)=>{if(e.target===chatModal) chatModal.classList.remove('show');});
 const homeLogo=document.getElementById('homeLogo');
-homeLogo.addEventListener('click',()=>{
-  document.getElementById('profilePage').style.display='none';
-  document.getElementById('categoriesSection').style.display='block';
-  document.getElementById('vipSection').style.display='block';
-  document.getElementById('searchSection').style.display='block';
-});
 
 </script>
 

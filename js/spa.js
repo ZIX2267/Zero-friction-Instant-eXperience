@@ -147,9 +147,6 @@ function hideHome() {
   const vipSection =
     document.getElementById("vipSection");
 
-  const searchSection =
-    document.getElementById("searchSection");
-
   if(categoriesSection)
     categoriesSection.style.display = "none";
 
@@ -170,26 +167,23 @@ function showHome(fromHistory = false) {
     );
   }
 
-const categoriesSection =
-  document.getElementById("categoriesSection");
+  const categoriesSection =
+    document.getElementById("categoriesSection");
 
-const vipSection =
-  document.getElementById("vipSection");
+  const vipSection =
+    document.getElementById("vipSection");
 
-const searchSection =
-  document.getElementById("searchSection");
+  const searchSection =
+    document.getElementById("searchSection");
 
-if(categoriesSection)
-  categoriesSection.style.display = "block";
+  if(categoriesSection)
+    categoriesSection.style.display = "block";
 
-if(vipSection)
-  vipSection.style.display = "block";
+  if(vipSection)
+    vipSection.style.display = "block";
 
-const searchSection =
-  document.getElementById("searchSection");
-
-if(searchSection)
-  searchSection.style.display = "block";
+  if(searchSection)
+    searchSection.style.display = "block";
 }
 
 /* ---------- ADS RENDER ---------- */
@@ -258,8 +252,11 @@ if(!window.fromHistory){
 
 hideHome();
 
-// ✅ показываем поиск ПОСЛЕ скрытия главной
-searchSection.style.display = "block";
+const searchSection =
+  document.getElementById("searchSection");
+
+if(searchSection)
+  searchSection.style.display = "block";
 
   const data = DB.categories[category];
 
