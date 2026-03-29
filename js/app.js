@@ -1,3 +1,4 @@
+import "./spa.js";
 import { AUTH } from "./auth.js";
 import { DB } from "./db.js";
 import { addAd, getAds } from "./ads.js";

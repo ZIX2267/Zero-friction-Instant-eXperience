@@ -115,6 +115,7 @@ body{margin:0;font-family:Segoe UI, Arial, sans-serif;background:#f2f4f5;color:#
 </section>
 <!-- Личный кабинет теперь только через JS, не отображается на главной -->
 <div id="profilePage"></div>
+<div id="app"></div>
 <div class="chat-modal" id="chatModal">
   <div class="chat-box">
     <div class="chat-header">
@@ -138,7 +139,7 @@ const dropdown=document.getElementById('dropdown');
 profileLink.addEventListener('click',(e)=>{
 
   if(!window.AUTH || !AUTH.user){
-    openLoginPage();
+    location.hash = "login";
     return;
   }
 
