@@ -243,7 +243,14 @@ document.addEventListener("click", e => {
   }
 export { AUTH };
 
-// ✅ делаем глобальным для старого SPA
-window.AUTH = AUTH;
+});
+
+  }
 
 });
+
+// ✅ экспорт должен быть СНАРУЖИ
+export { AUTH };
+
+// глобально для старого кода
+window.AUTH = AUTH;
