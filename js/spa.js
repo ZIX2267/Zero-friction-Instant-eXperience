@@ -9,7 +9,9 @@ import {
 
 
 import { AUTH } from "./auth.js";
+
 });
+
 export function initUI(){
 
   const categoryGrid = document.querySelector(".categories");
