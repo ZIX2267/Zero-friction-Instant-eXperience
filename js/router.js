@@ -9,7 +9,11 @@ export function initRouter(root){
 
 export function openMyAdsPage(){
 
-location.hash = "myads";
+history.pushState(
+  { page:"myAds" },
+  "",
+  "#myads"
+);
 
   const ads = getMyAds();
 

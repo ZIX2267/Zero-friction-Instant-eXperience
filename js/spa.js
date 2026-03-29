@@ -404,20 +404,6 @@ document.addEventListener("click", (e)=>{
 
 });
 
-if (categoryGrid) {
-  categoryGrid.addEventListener("click", (e) => {
-
-    const cat = e.target.closest(".category");
-    if (!cat) return;
-
-    const name = cat.querySelector("p").textContent.trim();
-
-    if (DB.categories[name]) {
-      openCategory(name);
-    }
-
-  });
-}
 
 /* ---------- RETURN HOME ---------- */
 
@@ -1045,5 +1031,5 @@ export function initUI(){
 
 }
 
-
+}); // ← ЗАКРЫТЬ load listener
 
