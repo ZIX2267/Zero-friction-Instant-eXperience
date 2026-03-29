@@ -1,7 +1,9 @@
 import { AUTH } from "./auth.js";
 import { openMyAdsPage } from "./router.js";
 
-export function openProfilePage(appRoot){
+export function openProfilePage(){
+
+  const appRoot = document.getElementById("app");
 
   if(!AUTH.user){
     location.hash="login";
@@ -10,7 +12,6 @@ export function openProfilePage(appRoot){
 
   appRoot.innerHTML = `
     <div class="profile">
-
       <div class="avatar-big">
         ${AUTH.user.login[0].toUpperCase()}
       </div>
@@ -20,22 +21,10 @@ export function openProfilePage(appRoot){
       <button id="myAdsBtn">
         Мои объявления
       </button>
-
     </div>
   `;
 
   document
     .getElementById("myAdsBtn")
-    .onclick = openMyAdsPage;
+    .onclick = () => location.hash="myads";
 }
-
-window.addEventListener("hashchange", () => {
-
-  const hash = location.hash.replace("#","");
-
-  if(hash === "profile"){
-    import("./profile.js")
-      .then(m => m.openProfilePage(appRoot));
-  }
-
-});

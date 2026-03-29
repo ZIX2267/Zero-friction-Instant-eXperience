@@ -988,46 +988,6 @@ window.addEventListener("load", ()=>{
     "",
     "#home"
   );
-/* ---------- POPSTATE (BACK BUTTON) ---------- */
-
-window.onpopstate = e => {
-
-  const state = e.state;
-
-  if(!state){
-    showHome(true);
-    return;
-  }
-
-  window.fromHistory = true;
-
-  /* --- AUTH PAGES --- */
-  if(state.page === "login")
-    openLoginPage();
-
-  else if(state.page === "register")
-    openRegisterPage();
-
-  /* --- SPA PAGES --- */
-  else if(state.page === "home")
-    showHome(true);
-
-  else if(state.page === "category")
-    openCategory(state.category, true);
-
-  else if(state.page === "sub")
-    openSub(state.category, state.sub, true);
-
-  else if(state.page === "ad")
-    openAd(state.id, true);
-
-else if(state.page === "profile")
-  openProfilePage();
-
-  window.fromHistory = false;
-};
-
-});
 
 
 /* ===============================

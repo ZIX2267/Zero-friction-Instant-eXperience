@@ -24,14 +24,3 @@ history.pushState(
   initUI();
 }
 
-window.onpopstate = e=>{
-
-  const state = e.state;
-  if(!state) return;
-
-  if(state.page==="myAds"){
-    openMyAdsPage();
-    initUI();
-  }
-
-};

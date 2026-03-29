@@ -24,18 +24,9 @@ document.addEventListener("click", e=>{
 
 });
 
-/* ---------- HASH ROUTER ---------- */
-
 function handleRoute(){
 
   const hash = location.hash.replace("#","");
-
-  if(hash === "myads"){
-    import("./router.js").then(m =>
-      m.openMyAdsPage()
-    );
-    return;
-  }
 
   if(hash === "profile"){
     import("./profile.js").then(m =>
@@ -44,10 +35,25 @@ function handleRoute(){
     return;
   }
 
+  if(hash === "myads"){
+    import("./router.js").then(m =>
+      m.openMyAdsPage()
+    );
+    return;
+  }
+
 }
 
-/* first load */
-handleRoute();
+document.addEventListener("click", e=>{
 
-/* when hash changes */
-window.addEventListener("hashchange", handleRoute);
+  if(e.target.id==="addAdBtn"){
+
+    if(!AUTH.user){
+      location.hash="login";
+      return;
+    }
+
+    alert("Открыть страницу создания объявления");
+  }
+
+});
