@@ -6,6 +6,7 @@ const appRoot =
   document.getElementById("app");
 
 initRouter(appRoot);
+initUI();
 
 /* GLOBAL EVENTS */
 
