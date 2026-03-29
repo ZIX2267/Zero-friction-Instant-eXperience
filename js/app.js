@@ -1,4 +1,4 @@
-import "./spa.js";
+import { initUI } from "./spa.js";
 import { AUTH } from "./auth.js";
 import { initRouter } from "./router.js";
 
