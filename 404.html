@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<title>ZIX</title>
+<style>
+*{box-sizing:border-box;}
+body{margin:0;font-family:Segoe UI, Arial, sans-serif;background:#f2f4f5;color:#002f34;}
+.container{max-width:1100px;margin:0 auto;padding:0 16px;}
+.header{background:#002f34;color:white;}
+.header-inner{height:72px;display:flex;align-items:center;justify-content:space-between;padding:0 16px;}
+.logo{font-size:34px;font-weight:900;color:#23e5db;cursor:pointer;}
+.header-right{display:flex;align-items:center;gap:22px;}
+.icon,.chat-btn{cursor:pointer;opacity:.9; font-size:22px;}
+.icon:hover,.chat-btn:hover{opacity:1;}
+.profile-wrapper{position:relative;}
+.profile-link{display:flex;align-items:center;gap:8px;color:white;text-decoration:none;font-weight:700;cursor:pointer;}
+.avatar-mini{
+  width:32px;
+  height:32px;
+  border-radius:50%;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  font-weight:bold;
+  color:white;
+  margin-right:8px;
+  font-size:14px;
+}
+.add-btn{background:white;border:none;padding:10px 18px;border-radius:6px;font-weight:800;cursor:pointer;}
+.dropdown{position:absolute;top:45px;right:0;background:white;color:#002f34;border-radius:10px;box-shadow:0 8px 20px rgba(0,0,0,.15);display:none;flex-direction:column;min-width:150px;overflow:hidden;z-index:999;}
+.dropdown a{padding:10px 12px;text-decoration:none;color:#002f34;}
+.dropdown a:hover{background:#f2f4f5;}
+.dropdown.show{display:flex;}
+.olx-search{margin:30px 0;}
+.search-box{background:white;border-radius:10px;display:flex;overflow:hidden;box-shadow:0 4px 14px rgba(0,0,0,.1);}
+.search-field{flex:1;padding:18px;display:flex;gap:10px;align-items:center;}
+.search-field input{border:none;outline:none;width:100%;font-size:16px;background-image:none;}
+.search-btn{background:#002f34;color:white;border:none;padding:0 28px;font-weight:800;cursor:pointer;display:flex;align-items:center;gap:8px;}
+.search-btn svg{width:18px;height:18px;}
+.categories{display:grid;grid-template-columns:repeat(5,1fr);gap:30px;background:white;padding:30px;border-radius:12px;text-align:center;}
+.categories h2{text-align:center;font-weight:700;}
+.category{cursor:pointer;text-align:center;}
+.circle{width:96px;height:96px;margin:auto;border-radius:50%;background:#e8f1f2;display:flex;align-items:center;justify-content:center;font-size:40px;transition:.25s;}
+.category:hover .circle{transform:scale(1.12);background:#dff5f3;}
+.vip{margin:50px auto 70px;text-align:center;}
+.vip h2{font-weight:800;margin-bottom:30px;}
+.vip-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:22px;justify-content:center;}
+.vip-card{background:white;border-radius:12px;overflow:hidden;box-shadow:0 2px 12px rgba(0,0,0,.08);transition:.25s;}
+.vip-card:hover{transform:translateY(-5px);}
+.vip-card img{width:100%;height:200px;object-fit:cover;}
+.vip-card h4{margin:12px;}
+.vip-card p{margin:12px;font-weight:bold;}
+.chat-modal{position:fixed;inset:0;background:rgba(0,0,0,.45);display:none;align-items:center;justify-content:center;z-index:100;}
+.chat-modal.show{display:flex;}
+.chat-box{width:300px;height:450px;background:white;border-radius:12px;display:flex;flex-direction:column;overflow:hidden;}
+.chat-header{background:#002f34;color:white;padding:14px;display:flex;justify-content:space-between;}
+.chat-body{flex:1;padding:16px;background:#f2f4f5;}
+.chat-close{cursor:pointer;}
+#profilePage{display:none;background:white;padding:30px;margin:30px auto;border-radius:12px;max-width:600px;display:flex;align-items:center;gap:16px;}
+#profilePage .profile-avatar{width:50px;height:50px;border-radius:50%;background:#23e5db;display:flex;align-items:center;justify-content:center;font-weight:bold;}
+#profilePage h2{margin:0;font-weight:800;}
+#profilePage p{margin:0;}
+</style>
+</head>
+<body>
+<header class="header">
+  <div class="container header-inner">
+    <div class="logo" id="homeLogo">ZIX</div>
+    <div class="header-right">
+      <div class="chat-btn" id="chatBtn">💬</div>
+      <div class="lang-switch">Укр | Рус</div>
+      <div class="icon">♡</div>
+      <div class="icon">🔔</div>
+      <div class="profile-wrapper" id="profile">
+<div class="profile-link" id="profileLink">
+  <div class="avatar" id="avatarCircle" style="display:none"></div>
+  <span id="profileBtn">Мой профиль</span>
+</div>
+        <div class="dropdown" id="dropdown">
+          <a href="#" id="profileItem">Открыть профиль</a>
+          <a href="#">Мои объявления</a>
+          <a href="#">Настройки</a>
+          <a href="#" id="logoutBtn">Выйти</a>
+        </div>
+      </div>
+      <button class="add-btn">Добавить объявление</button>
+    </div>
+  </div>
+</header>
+<section class="olx-search" id="searchSection">
+  <div class="container">
+    <div class="search-box">
+      <div class="search-field">
+        <input type="text" id="searchInput" placeholder="Что ищете?">
+      </div>
+      <button id="searchBtn" class="search-btn">
+        <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="11" cy="11" r="8"></circle>
+          <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+        </svg>
+        Поиск
+      </button>
+    </div>
+  </div>
+</section>
+<section class="container category-box" id="categoriesSection">
+<h2 style="text-align:center;font-weight:700;">Разделы на сервисе OLX</h2>
+<div id="categoryGrid" class="categories"></div>
+</section>
+<section class="container vip" id="vipSection">
+<h2 style="font-weight:800;text-align:center;">VIP объявления</h2>
+<div id="vipGrid" class="vip-grid"></div>
+</section>
+<!-- Личный кабинет теперь только через JS, не отображается на главной -->
+<div id="profilePage"></div>
+<div class="chat-modal" id="chatModal">
+  <div class="chat-box">
+    <div class="chat-header">
+      <span>Чат</span>
+      <span class="chat-close" id="chatClose">✕</span>
+    </div>
+    <div class="chat-body">
+      <p>Здесь будет переписка...</p>
+    </div>
+  </div>
+</div>
+<script>
+const categories=[{name:'Авто',icon:'🚗'},{name:'Недвижимость',icon:'🏠'},{name:'Электроника',icon:'📱'},{name:'Одежда',icon:'👕'},{name:'Животные',icon:'🐶'},{name:'Дом и сад',icon:'🧰'},{name:'Хобби',icon:'🎮'},{name:'Работа',icon:'💼'},{name:'Бизнес',icon:'📦'},{name:'Услуги',icon:'🛠'}];
+const vipAds=[{title:'iPhone 14 Pro',price:'35 000 грн',img:'https://picsum.photos/400/300?1'},{title:'BMW X5',price:'18 500 $',img:'https://picsum.photos/400/300?2'},{title:'Gaming Laptop',price:'27 000 грн',img:'https://picsum.photos/400/300?3'},{title:'Квартира Киев',price:'75 000 $',img:'https://picsum.photos/400/300?4'},{title:'Samsung Galaxy S23',price:'30 000 грн',img:'https://picsum.photos/400/300?5'},{title:'Audi A6',price:'25 000 $',img:'https://picsum.photos/400/300?6'},{title:'MacBook Pro',price:'35 000 грн',img:'https://picsum.photos/400/300?7'},{title:'Квартира Львов',price:'60 000 $',img:'https://picsum.photos/400/300?8'}];
+function renderCategories(){const grid=document.getElementById('categoryGrid');grid.innerHTML='';categories.forEach(cat=>{const el=document.createElement('div');el.className='category';el.innerHTML=`<div class="circle">${cat.icon}</div><p>${cat.name}</p>`;grid.appendChild(el);});}
+function renderVIP(list=vipAds){const grid=document.getElementById('vipGrid');grid.innerHTML='';list.forEach(ad=>{const card=document.createElement('div');card.className='vip-card';card.innerHTML=`<img src="${ad.img}"><h4>${ad.title}</h4><p>${ad.price}</p>`;grid.appendChild(card);});}
+renderCategories();
+renderVIP();
+const profileLink=document.querySelector('.profile-link');
+const dropdown=document.getElementById('dropdown');
+profileLink.addEventListener('click',(e)=>{
+
+  if(!window.AUTH || !AUTH.user){
+    openLoginPage();
+    return;
+  }
+
+  e.stopPropagation();
+dropdown.classList.toggle('show');
+});
+
+document.addEventListener('click',()=>{dropdown.classList.remove('show');});
+
+const chatBtn=document.getElementById('chatBtn');
+const chatModal=document.getElementById('chatModal');
+const chatClose=document.getElementById('chatClose');
+chatBtn.addEventListener('click',()=>chatModal.classList.add('show'));
+chatClose.addEventListener('click',()=>chatModal.classList.remove('show'));
+chatModal.addEventListener('click',(e)=>{if(e.target===chatModal) chatModal.classList.remove('show');});
+const homeLogo=document.getElementById('homeLogo');
+homeLogo.addEventListener('click',()=>{
+  document.getElementById('profilePage').style.display='none';
+  document.getElementById('categoriesSection').style.display='block';
+  document.getElementById('vipSection').style.display='block';
+  document.getElementById('searchSection').style.display='block';
+});
+
+</script>
+
+
+<script type="module" src="./js/app.js"></script>
+
+</div>
+
+</body>
+</html>
