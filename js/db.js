@@ -1,8 +1,5 @@
 export const DB = {
   categories: {},
-  ads: [],
-  users: []
-};
 
   ads: JSON.parse(
     localStorage.getItem("ads") || "[]"
@@ -12,6 +9,7 @@ export const DB = {
     localStorage.getItem("favorites") || "{}"
   ),
 
+  users: []
 };
 
 export function saveAds(){
