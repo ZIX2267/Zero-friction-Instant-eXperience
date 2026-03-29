@@ -126,7 +126,7 @@ body{margin:0;font-family:Segoe UI, Arial, sans-serif;background:#f2f4f5;color:#
     </div>
   </div>
 </div>
-<script>
+<script defer>
 const categories=[{name:'Авто',icon:'🚗'},{name:'Недвижимость',icon:'🏠'},{name:'Электроника',icon:'📱'},{name:'Одежда',icon:'👕'},{name:'Животные',icon:'🐶'},{name:'Дом и сад',icon:'🧰'},{name:'Хобби',icon:'🎮'},{name:'Работа',icon:'💼'},{name:'Бизнес',icon:'📦'},{name:'Услуги',icon:'🛠'}];
 const vipAds=[{title:'iPhone 14 Pro',price:'35 000 грн',img:'https://picsum.photos/400/300?1'},{title:'BMW X5',price:'18 500 $',img:'https://picsum.photos/400/300?2'},{title:'Gaming Laptop',price:'27 000 грн',img:'https://picsum.photos/400/300?3'},{title:'Квартира Киев',price:'75 000 $',img:'https://picsum.photos/400/300?4'},{title:'Samsung Galaxy S23',price:'30 000 грн',img:'https://picsum.photos/400/300?5'},{title:'Audi A6',price:'25 000 $',img:'https://picsum.photos/400/300?6'},{title:'MacBook Pro',price:'35 000 грн',img:'https://picsum.photos/400/300?7'},{title:'Квартира Львов',price:'60 000 $',img:'https://picsum.photos/400/300?8'}];
 function renderCategories(){const grid=document.getElementById('categoryGrid');grid.innerHTML='';categories.forEach(cat=>{const el=document.createElement('div');el.className='category';el.innerHTML=`<div class="circle">${cat.icon}</div><p>${cat.name}</p>`;grid.appendChild(el);});}
@@ -166,8 +166,6 @@ homeLogo.addEventListener('click',()=>{
 
 
 <script type="module" src="./js/app.js"></script>
-
-</div>
 
 </body>
 </html>
