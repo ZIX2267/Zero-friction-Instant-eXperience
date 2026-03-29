@@ -1033,5 +1033,4 @@ export function initUI(){
 
 }
 
-}); // ← ЗАКРЫТЬ load listener
 
