@@ -1,4 +1,8 @@
 export const DB = {
+  categories: {},
+  ads: [],
+  users: []
+};
 
   ads: JSON.parse(
     localStorage.getItem("ads") || "[]"

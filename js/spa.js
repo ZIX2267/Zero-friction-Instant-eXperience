@@ -404,25 +404,27 @@ document.addEventListener("click", (e)=>{
 
 });
 
-categoryGrid.addEventListener("click", (e) => {
+if (categoryGrid) {
+  categoryGrid.addEventListener("click", (e) => {
 
-  const cat = e.target.closest(".category");
-  if (!cat) return;
+    const cat = e.target.closest(".category");
+    if (!cat) return;
 
-  // берем название категории правильно
-  const name = cat.querySelector("p").textContent.trim();
+    const name = cat.querySelector("p").textContent.trim();
 
-  if (DB.categories[name]) {
-    openCategory(name);
-  }
+    if (DB.categories[name]) {
+      openCategory(name);
+    }
 
-});
-
+  });
+}
 
 /* ---------- RETURN HOME ---------- */
 
 
-homeLogo.addEventListener("click", showHome);
+if (homeLogo) {
+  homeLogo.addEventListener("click", showHome);
+}
 
 
 /* ---------- STYLES (OLX LOOK) ---------- */
