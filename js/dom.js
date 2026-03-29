@@ -1,7 +1,7 @@
 // dom.js
 
 export const categoriesSection =
-  document.getElementById("categorySection");
+  document.getElementById("categoriesSection");
 
 export const vipSection =
   document.getElementById("vipSection");
