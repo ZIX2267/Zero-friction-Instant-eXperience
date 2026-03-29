@@ -9,6 +9,32 @@ import {
 
 
 import { AUTH } from "./auth.js";
+
+export function initUI(){
+
+  const categoryGrid = document.querySelector(".categories");
+  const homeLogo = document.querySelector("#homeLogo");
+
+  if(categoryGrid){
+    categoryGrid.addEventListener("click",(e)=>{
+
+      const cat = e.target.closest(".category");
+      if(!cat) return;
+
+      const name =
+        cat.querySelector("p").textContent.trim();
+
+      if(DB.categories[name]){
+        openCategory(name);
+      }
+    });
+  }
+
+  if(homeLogo){
+    homeLogo.addEventListener("click", showHome);
+  }
+
+}
 /* ===============================
    OLX SPA ENGINE
    НЕ ИЗМЕНЯЕТ ГЛАВНУЮ СТРАНИЦУ
@@ -989,35 +1015,5 @@ window.addEventListener("load", ()=>{
     "#home"
   );
 
-
-/* ===============================
-   UI INITIALIZATION
-================================ */
-
-export function initUI(){
-
-  const categoryGrid = document.querySelector(".categories");
-  const homeLogo = document.querySelector("#homeLogo");
-
-  if(categoryGrid){
-    categoryGrid.addEventListener("click",(e)=>{
-
-      const cat = e.target.closest(".category");
-      if(!cat) return;
-
-      const name =
-        cat.querySelector("p").textContent.trim();
-
-      if(DB.categories[name]){
-        openCategory(name);
-      }
-    });
-  }
-
-  if(homeLogo){
-    homeLogo.addEventListener("click", showHome);
-  }
-
-}
-
+});
 
