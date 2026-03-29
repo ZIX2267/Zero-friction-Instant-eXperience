@@ -156,9 +156,6 @@ function hideHome() {
   if(vipSection)
     vipSection.style.display = "none";
 
-const searchSection =
-  document.getElementById("searchSection");
-
 if(searchSection)
   searchSection.style.display = "none";
 }
