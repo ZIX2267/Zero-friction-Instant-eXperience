@@ -1002,6 +1002,8 @@ else if(state.page === "profile")
 
 });
 
+}); // ← закрываем load listener
+
 /* ===============================
    UI INITIALIZATION
 ================================ */
@@ -1023,7 +1025,6 @@ export function initUI(){
       if(DB.categories[name]){
         openCategory(name);
       }
-
     });
   }
 
