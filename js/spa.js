@@ -1002,7 +1002,6 @@ else if(state.page === "profile")
 
 });
 
-}); // ← закрываем load listener
 
 /* ===============================
    UI INITIALIZATION
