@@ -10,7 +10,7 @@ export const DB = {
 
   favorites: JSON.parse(
     localStorage.getItem("favorites") || "{}"
-  )
+  ),
 
 };
 
