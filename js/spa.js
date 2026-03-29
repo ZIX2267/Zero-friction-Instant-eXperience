@@ -413,6 +413,10 @@ function openAd(id){
 /* ---------- CATEGORY CLICK HOOK ---------- */
 
 const categoryGrid = document.getElementById("categoryGrid");
+const categoriesSection = document.getElementById("categoriesSection");
+const vipSection = document.getElementById("vipSection");
+const searchSection = document.getElementById("searchSection");
+const homeLogo = document.getElementById("homeLogo");
 
 /* ---------- AD CLICK ---------- */
 
