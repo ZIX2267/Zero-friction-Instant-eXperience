@@ -22,3 +22,31 @@ document.addEventListener("click", e=>{
   }
 
 });
+
+/* ---------- HASH ROUTER ---------- */
+
+function handleRoute(){
+
+  const hash = location.hash.replace("#","");
+
+  if(hash === "myads"){
+    import("./router.js").then(m =>
+      m.openMyAdsPage()
+    );
+    return;
+  }
+
+  if(hash === "profile"){
+    import("./profile.js").then(m =>
+      m.openProfilePage()
+    );
+    return;
+  }
+
+}
+
+/* first load */
+handleRoute();
+
+/* when hash changes */
+window.addEventListener("hashchange", handleRoute);
