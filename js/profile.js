@@ -28,3 +28,5 @@ export function openProfilePage(appRoot){
     .getElementById("myAdsBtn")
     .onclick = openMyAdsPage;
 }
+
+export { openProfilePage };

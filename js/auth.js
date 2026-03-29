@@ -241,13 +241,9 @@ document.addEventListener("click", e => {
 
     AUTH.applyAuthUI();
   }
-export { AUTH };
 
 });
 
-  }
-
-});
 
 // ✅ экспорт должен быть СНАРУЖИ
 export { AUTH };

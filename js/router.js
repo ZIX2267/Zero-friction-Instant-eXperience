@@ -1,4 +1,4 @@
-import { openProfilePage } from "./profile.js";
+
 import { getMyAds } from "./ads.js";
 
 let appRoot;
