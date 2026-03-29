@@ -1014,6 +1014,36 @@ else if(state.page === "profile")
   window.fromHistory = false;
 };
 
+/* ===============================
+   UI INITIALIZATION
+================================ */
+
+export function initUI(){
+
+  const categoryGrid = document.querySelector(".categories");
+  const homeLogo = document.querySelector("#homeLogo");
+
+  if(categoryGrid){
+    categoryGrid.addEventListener("click",(e)=>{
+
+      const cat = e.target.closest(".category");
+      if(!cat) return;
+
+      const name =
+        cat.querySelector("p").textContent.trim();
+
+      if(DB.categories[name]){
+        openCategory(name);
+      }
+
+    });
+  }
+
+  if(homeLogo){
+    homeLogo.addEventListener("click", showHome);
+  }
+
+}
 
 
-});
+
