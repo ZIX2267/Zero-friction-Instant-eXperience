@@ -28,3 +28,14 @@ export function openProfilePage(appRoot){
     .getElementById("myAdsBtn")
     .onclick = openMyAdsPage;
 }
+
+window.addEventListener("hashchange", () => {
+
+  const hash = location.hash.replace("#","");
+
+  if(hash === "profile"){
+    import("./profile.js")
+      .then(m => m.openProfilePage(appRoot));
+  }
+
+});

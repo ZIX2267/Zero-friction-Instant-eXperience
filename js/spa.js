@@ -1,3 +1,12 @@
+import { DB, saveAds, saveFavorites } from "./db.js";
+import {
+  categoriesSection,
+  vipSection,
+  searchSection,
+  homeLogo,
+  categoryGrid
+} from "./dom.js";
+
 
 import { AUTH } from "./auth.js";
 /* ===============================
@@ -9,33 +18,6 @@ import { AUTH } from "./auth.js";
    DATABASE (AUTO OLX SYSTEM)
 ================================= */
 
-const DB = {
-
-  categories:{},
-
-  ads: JSON.parse(
-    localStorage.getItem("ads") || "[]"
-  ),
-
-  favorites: JSON.parse(
-    localStorage.getItem("favorites") || "{}"
-  )
-
-};
-
-function saveAds(){
-  localStorage.setItem(
-    "ads",
-    JSON.stringify(DB.ads)
-  );
-}
-
-function saveFavorites(){
-  localStorage.setItem(
-    "favorites",
-    JSON.stringify(DB.favorites)
-  );
-}
 
 const images = [
   "https://picsum.photos/400/300?1",
@@ -410,14 +392,6 @@ function openAd(id){
     () => history.back();
 }
 
-/* ---------- CATEGORY CLICK HOOK ---------- */
-
-const categoryGrid = document.getElementById("categoryGrid");
-const categoriesSection = document.getElementById("categoriesSection");
-const vipSection = document.getElementById("vipSection");
-const searchSection = document.getElementById("searchSection");
-const homeLogo = document.getElementById("homeLogo");
-
 /* ---------- AD CLICK ---------- */
 
 document.addEventListener("click", (e)=>{
@@ -447,7 +421,6 @@ categoryGrid.addEventListener("click", (e) => {
 
 /* ---------- RETURN HOME ---------- */
 
-const searchSection = document.getElementById("searchSection");
 
 homeLogo.addEventListener("click", showHome);
 
@@ -993,7 +966,6 @@ addEventListener("click", e=>{
 window.addEventListener("load", ()=>{
 
   buildCategoriesFromHome();
-  DB.ads = generateAds();
 
   // ✅ регистрируем главную страницу в history
   history.replaceState(
