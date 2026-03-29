@@ -140,8 +140,26 @@ document.body.appendChild(appRoot);
 /* ---------- HELPERS ---------- */
 
 function hideHome() {
-  categoriesSection.style.display = "none";
-  vipSection.style.display = "none";
+
+  const categoriesSection =
+    document.getElementById("categoriesSection");
+
+  const vipSection =
+    document.getElementById("vipSection");
+
+  const searchSection =
+    document.getElementById("searchSection");
+
+  if(categoriesSection)
+    categoriesSection.style.display = "none";
+
+  if(vipSection)
+    vipSection.style.display = "none";
+
+const searchSection =
+  document.getElementById("searchSection");
+
+if(searchSection)
   searchSection.style.display = "none";
 }
 
@@ -155,11 +173,26 @@ function showHome(fromHistory = false) {
     );
   }
 
-  categoriesSection.style.display = "block";
-  vipSection.style.display = "block";
-  searchSection.style.display = "block";
+const categoriesSection =
+  document.getElementById("categoriesSection");
 
-  appRoot.innerHTML = "";
+const vipSection =
+  document.getElementById("vipSection");
+
+const searchSection =
+  document.getElementById("searchSection");
+
+if(categoriesSection)
+  categoriesSection.style.display = "block";
+
+if(vipSection)
+  vipSection.style.display = "block";
+
+const searchSection =
+  document.getElementById("searchSection");
+
+if(searchSection)
+  searchSection.style.display = "block";
 }
 
 /* ---------- ADS RENDER ---------- */
