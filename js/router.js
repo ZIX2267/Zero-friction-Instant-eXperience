@@ -82,9 +82,6 @@ function handleRoute(){
   window.fromHistory = false;
 }
 
-  window.fromHistory = false;
-}
-
 /* listeners */
 
 window.addEventListener("popstate", handleRoute);
