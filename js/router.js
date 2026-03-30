@@ -24,3 +24,43 @@ history.pushState(
   initUI();
 }
 
+/* ===============================
+   GLOBAL ROUTER
+================================= */
+
+function handleRoute(){
+
+  const state = history.state;
+
+  if(!state) return;
+
+  window.fromHistory = true;
+
+  switch(state.page){
+
+    case "home":
+      showHome(true);
+      break;
+
+    case "profile":
+      openProfilePage();
+      break;
+
+    case "category":
+      openCategory(state.category);
+      break;
+
+    case "sub":
+      openSub(state.category, state.sub);
+      break;
+
+    case "ad":
+      openAd(state.id);
+      break;
+  }
+
+  window.fromHistory = false;
+}
+
+window.addEventListener("popstate", handleRoute);
+
