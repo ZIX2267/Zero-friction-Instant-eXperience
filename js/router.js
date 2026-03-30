@@ -1,5 +1,12 @@
 import { getMyAds } from "./ads.js";
-import { initUI } from "./spa.js";
+
+import {
+  showHome,
+  openProfilePage,
+  openCategory,
+  openSub,
+  openAd
+} from "./spa.js";
 
 let appRoot;
 
@@ -7,32 +14,37 @@ export function initRouter(root){
   appRoot = root;
 }
 
+/* ======================
+   PAGES
+====================== */
+
 export function openMyAdsPage(){
 
-history.pushState(
-  { page:"myAds" },
-  "",
-  "#myads"
-);
+  history.pushState(
+    { page:"myAds" },
+    "",
+    "#myads"
+  );
 
   const ads = getMyAds();
 
   appRoot.innerHTML =
     "<h1>Мои объявления</h1>" +
     JSON.stringify(ads);
-
-  initUI();
 }
 
-/* ===============================
+/* ======================
    GLOBAL ROUTER
-================================= */
+====================== */
 
 function handleRoute(){
 
   const state = history.state;
 
-  if(!state) return;
+  if(!state){
+    showHome(true);
+    return;
+  }
 
   window.fromHistory = true;
 
@@ -57,10 +69,16 @@ function handleRoute(){
     case "ad":
       openAd(state.id);
       break;
+
+    case "myAds":
+      openMyAdsPage();
+      break;
   }
 
   window.fromHistory = false;
 }
 
-window.addEventListener("popstate", handleRoute);
+/* listeners */
 
+window.addEventListener("popstate", handleRoute);
+window.addEventListener("load", handleRoute);
