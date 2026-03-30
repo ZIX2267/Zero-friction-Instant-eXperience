@@ -1,3 +1,4 @@
+ import { navigate } from "./router.js";
 import { DB, saveAds, saveFavorites } from "./db.js";
 import {
   categoriesSection,
