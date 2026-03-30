@@ -302,8 +302,6 @@ applyFilters();
         openSub(category, btn.dataset.sub);
     });
 
-} // 
-
 
   /* ---------- HISTORY ---------- */
 
