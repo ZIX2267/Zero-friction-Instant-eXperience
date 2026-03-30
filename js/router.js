@@ -39,6 +39,12 @@ export function openMyAdsPage(){
 
 function handleRoute(){
 
+   // ⭐ очищаем SPA перед загрузкой новой страницы
+  const spaRoot = document.getElementById("spaRoot");
+  if (spaRoot) spaRoot.innerHTML = "";
+
+  const state = history.state;
+
   const state = history.state;
 
   if(!state){
