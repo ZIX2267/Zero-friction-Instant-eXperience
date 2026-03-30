@@ -267,7 +267,6 @@ export function renderFilters(){
 
   /* ---------- FILTERS ---------- */
 
-  const priceFrom = document.getElementById("priceFrom");
   const priceTo = document.getElementById("priceTo");
   const condition = document.getElementById("conditionFilter");
 
@@ -324,7 +323,6 @@ applyFilters();
     <div id="adsContainer"></div>
   `;
 
-  const priceFrom = document.getElementById("priceFrom");
   const priceTo = document.getElementById("priceTo");
   const condition = document.getElementById("conditionFilter");
 
