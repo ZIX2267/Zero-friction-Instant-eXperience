@@ -25,9 +25,7 @@ export function initUI(){
       const name =
         cat.querySelector("p").textContent.trim();
 
-      if(DB.categories[name]){
-        import { navigate } from "./router.js";
-
+      if(DB.categories[name]){       
 navigate("category/" + name);
       }
     });
