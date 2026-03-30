@@ -25,7 +25,7 @@ export function initUI(){
       const name =
         cat.querySelector("p").textContent.trim();
 
-      if(DB.categories[name]);
+      if(DB.categories[name]) {
 navigate("category/" + name);
       }
     });
