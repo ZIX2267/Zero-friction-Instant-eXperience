@@ -24,25 +24,6 @@ document.addEventListener("click", e=>{
 
 });
 
-function handleRoute(){
-
-  const hash = location.hash.replace("#","");
-
-  if(hash === "profile"){
-    import("./profile.js").then(m =>
-      m.openProfilePage()
-    );
-    return;
-  }
-
-  if(hash === "myads"){
-    import("./router.js").then(m =>
-      m.openMyAdsPage()
-    );
-    return;
-  }
-
-}
 
 document.addEventListener("click", e=>{
 

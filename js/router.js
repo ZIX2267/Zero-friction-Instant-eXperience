@@ -1,84 +1,56 @@
-import { getMyAds } from "./ads.js";
-
-import {
-  showHome,
-  openProfilePage,
-  openCategory,
-  openSub,
-  openAd
-} from "./spa.js";
-
-let appRoot;
-
-export function initRouter(root){
-  appRoot = root;
-}
+import "./pages/category.page.js";
+import "./pages/sub.page.js";
+import "./pages/ad.page.js";
+import "./pages/profile.page.js";
+import "./pages/home.page.js";
+import { getPage } from "./page.js";
 
 /* ======================
-   PAGES
+   NAVIGATION
 ====================== */
 
-export function openMyAdsPage(){
+export function navigate(url){
 
   history.pushState(
-    { page:"myAds" },
+    {},
     "",
-    "#myads"
+    "#" + url
   );
 
-  const ads = getMyAds();
-
-  appRoot.innerHTML =
-    "<h1>Мои объявления</h1>" +
-    JSON.stringify(ads);
+  handleRoute();
 }
 
-/* ======================
-   GLOBAL ROUTER
-====================== */
+function parseURL(){
 
+  const hash = location.hash.slice(1);
+
+  const parts = hash.split("/").filter(Boolean);
+
+  return {
+    page: parts[0] || "home",
+    param1: parts[1],
+    param2: parts[2]
+  };
+}
+/* ======================
+   ROUTER CORE
+====================== */
 function handleRoute(){
 
-  // ⭐ очищаем SPA перед загрузкой новой страницы
-  const spaRoot = document.getElementById("spaRoot");
-  if (spaRoot) spaRoot.innerHTML = "";
+  const root = document.getElementById("spaRoot");
+  if(root) root.innerHTML = "";
 
-  const state = history.state;
+  const route = parseURL();
 
-  if(!state){
-    showHome(true);
+  const page = getPage(route.page);
+
+  if(!page){
+    console.warn("Page not found");
     return;
   }
 
   window.fromHistory = true;
-
-  switch(state.page){
-
-    case "home":
-      showHome(true);
-      break;
-
-    case "profile":
-      openProfilePage();
-      break;
-
-    case "category":
-      openCategory(state.category);
-      break;
-
-    case "sub":
-      openSub(state.category, state.sub);
-      break;
-
-    case "ad":
-      openAd(state.id);
-      break;
-
-    case "myAds":
-      openMyAdsPage();
-      break;
-  }
-
+  page(route);
   window.fromHistory = false;
 }
 

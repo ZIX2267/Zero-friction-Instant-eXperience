@@ -25,7 +25,9 @@ export function initUI(){
         cat.querySelector("p").textContent.trim();
 
       if(DB.categories[name]){
-        openCategory(name);
+        import { navigate } from "./router.js";
+
+navigate("category/" + name);
       }
     });
   }
@@ -157,15 +159,15 @@ description: descriptions[rand(0, descriptions.length-1)]
 
 /* ---------- SPA ROOT ---------- */
 
-const appRoot = document.createElement("section");
+const appRoot = document.getElementById("spaRoot");
 appRoot.className = "container";
 appRoot.id = "spaRoot";
-document.body.appendChild(appRoot);
+
 
 
 /* ---------- HELPERS ---------- */
 
-function hideHome() {
+export function hideHome() {
 
   const categoriesSection =
     document.getElementById("categoriesSection");
@@ -214,7 +216,7 @@ function showHome(fromHistory = false) {
 
 /* ---------- ADS RENDER ---------- */
 
-function renderAds(list) {
+export function renderAds(list) {
 
   return `
     <div class="ads-grid">
@@ -244,7 +246,7 @@ function renderAds(list) {
 
 /* ---------- FILTERS ---------- */
 
-function renderFilters(){
+export function renderFilters(){
 
   return `
     <div class="filters">
@@ -263,49 +265,6 @@ function renderFilters(){
     </div>
   `;
 }
-
-/* ---------- CATEGORY PAGE ---------- */
-
-function openCategory(category){
-
-if(!window.fromHistory){
-  history.pushState(
-    { page: "category", category },
-    "",
-    "#category=" + category
-  );
-}
-
-hideHome();
-
-const searchSection =
-  document.getElementById("searchSection");
-
-if(searchSection)
-  searchSection.style.display = "block";
-
-  const data = DB.categories[category];
-
-  appRoot.innerHTML = `
-      <h2>${category}</h2>
-
-      <div class="subcats">
-        ${data.sub.map(s=>`
-          <button class="sub-btn" data-sub="${s}">
-            ${s}
-          </button>
-        `).join("")}
-      </div>
-
-      ${renderFilters()}
-
-      <div id="adsContainer">
-        ${renderAds(
-          DB.ads.filter(a=>a.category===category)
-        )}
-      </div>
-  `;
-
 
   /* ---------- FILTERS ---------- */
 
@@ -345,9 +304,7 @@ applyFilters();
     });
 
 } // 
-/* ---------- SUBCATEGORY PAGE ---------- */
 
-function openSub(category, sub){
 
   /* ---------- HISTORY ---------- */
 
@@ -400,50 +357,7 @@ function openSub(category, sub){
   applyFilters();
 }
 
-/* ---------- AD PAGE ---------- */
 
-function openAd(id){
-
-  const ad = DB.ads.find(a => a.id == id);
-  if(!ad) return;
-
-  if(!window.fromHistory){
-    history.pushState(
-      { page:"ad", id },
-      "",
-      "#ad=" + id
-    );
-  }
-
-  hideHome();
-  searchSection.style.display = "block";
-
-  appRoot.innerHTML = `
-    <div class="ad-page">
-
-      <button id="adBack">← Назад</button>
-
-      <div class="ad-layout">
-
-        <img class="ad-big-img" src="${ad.img}">
-
-        <div class="ad-side">
-          <h1>${ad.title}</h1>
-          <div class="price">${ad.price} €</div>
-
-          <p><b>Категория:</b> ${ad.category}</p>
-          <p><b>Раздел:</b> ${ad.sub}</p>
-          <p><b>Состояние:</b> ${ad.condition}</p>
-<p style="margin-top:15px">${ad.description}</p>
-        </div>
-
-      </div>
-    </div>
-  `;
-
-  document.getElementById("adBack").onclick =
-    () => history.back();
-}
 
 /* ---------- AD CLICK ---------- */
 
@@ -795,53 +709,7 @@ style.innerHTML = `
 document.head.appendChild(style);
 
 /* ===============================
-   PROFILE PAGE (SPA)
-================================= */
 
-function openProfilePage(){
-
-  // защита
-  if(!AUTH.user){
-    openLoginPage();
-    return;
-  }
-
-  history.pushState(
-    {page:"profile"},
-    "",
-    "#profile"
-  );
-
-  hideHome();
-  searchSection.style.display = "none";
-
-  const myAds = DB.ads.filter(
-    ad => ad.ownerId === AUTH.user.id
-  );
-
-  appRoot.innerHTML = `
-    <div class="profile-page">
-
-      <h1>Мой профиль</h1>
-
-      <p><b>Логин:</b> ${AUTH.user.login}</p>
-
-      <button id="logoutBtn">
-        Выйти
-      </button>
-
-      <h2 style="margin-top:30px">
-        Мои объявления
-      </h2>
-
-      ${
-        myAds.length
-          ? renderAds(myAds)
-          : "<p>Объявлений пока нет</p>"
-      }
-
-    </div>
-  `;
 
   document.getElementById("logoutBtn").onclick=()=>{
     AUTH.logout();

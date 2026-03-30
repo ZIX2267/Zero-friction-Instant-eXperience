@@ -1,0 +1,36 @@
+import { registerPage } from "../page.js";
+import { DB } from "../db.js";
+import { hideHome, renderAds, renderFilters } from "../spa.js";
+
+const appRoot = document.getElementById("spaRoot");
+
+function openCategory(category){
+
+  hideHome();
+
+  const data = DB.categories[category];
+
+  appRoot.innerHTML = `
+      <h2>${category}</h2>
+
+      <div class="subcats">
+        ${data.sub.map(s=>`
+          <button class="sub-btn" data-sub="${s}">
+            ${s}
+          </button>
+        `).join("")}
+      </div>
+
+      ${renderFilters()}
+
+      <div id="adsContainer">
+        ${renderAds(
+          DB.ads.filter(a=>a.category===category)
+        )}
+      </div>
+  `;
+}
+
+registerPage("category", state=>{
+  openCategory(state.category);
+});
